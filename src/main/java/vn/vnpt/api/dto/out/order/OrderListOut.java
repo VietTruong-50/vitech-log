@@ -3,6 +3,8 @@ package vn.vnpt.api.dto.out.order;
 import lombok.Data;
 import vn.vnpt.api.repository.helper.Col;
 
+import java.util.List;
+
 @Data
 public class OrderListOut {
 
@@ -27,12 +29,21 @@ public class OrderListOut {
     @Col("status")
     private String status;
 
-    @Col("username")
-    private String username;
+    @Col("payment_method")
+    private String paymentMethod;
+
+    @Col("email")
+    private String email;
+
+    @Col("shipping_price")
+    private Long shippingPrice;
 
     @Col("created_date")
     private String createdDate;
 
     @Col("updated_date")
     private String updatedDate;
+
+    private List<OrderDetailOut> orderDetailOuts;
+
 }

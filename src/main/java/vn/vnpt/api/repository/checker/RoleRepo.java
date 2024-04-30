@@ -17,12 +17,11 @@ public class RoleRepo {
     @Autowired
     ProcedureCallerV3 procedureCallerV3;
 
-    public List<RoleOut> check(String userId, String path, String resourceId) {
+    public List<RoleOut> check(String userId, String path) {
         var outputs = procedureCallerV3.callOneRefCursor("check_role",
                 List.of(
                         ProcedureParameter.inputParam("prs_user_id", String.class, userId),
                         ProcedureParameter.inputParam("prs_api", String.class, path),
-                        ProcedureParameter.inputParam("prs_resource_id", String.class, resourceId),
                         ProcedureParameter.outputParam("out_result", String.class),
                         ProcedureParameter.refCursorParam("out_cur")
                 ),
