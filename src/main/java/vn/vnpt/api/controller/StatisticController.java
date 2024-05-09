@@ -32,27 +32,4 @@ public class StatisticController extends AbstractResponseController {
         });
     }
 
-    @GetMapping(value = "/success/order")
-    public DeferredResult<ResponseEntity<?>> statisticSuccessOrderAndOrderDateBetween(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate startDate,
-                                                                                      @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate endDate,
-                                                                                      SortPageIn sortPageIn) {
-        return responseEntityDeferredResult(() -> {
-            log.info("[REQUEST]: path: /success/order");
-            var result = statisticService.statisticSuccessOrder(startDate, endDate, sortPageIn);
-            log.info("[RESPONSE]: res: Success!");
-            return result;
-        });
-    }
-
-
-    @GetMapping(value = "/top5seller", produces = "application/json")
-    public DeferredResult<ResponseEntity<?>> getTop5Seller(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate startDate,
-                                                                                      @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate endDate) {
-        return responseEntityDeferredResult(() -> {
-            log.info("[REQUEST]: path: /top5seller");
-            var result = statisticService.top5seller(startDate, endDate);
-            log.info("[RESPONSE]: res: Success!");
-            return result;
-        });
-    }
 }
