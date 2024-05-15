@@ -46,6 +46,7 @@ services:
       - backend
 
   zookeeper:
+    container_name: vitech_zookeeper
     image: confluentinc/cp-zookeeper:latest
     ports:
       - 2181:2181
@@ -55,14 +56,17 @@ services:
       - backend
 
   kafka:
+    container_name: vitech_kafka
     image: confluentinc/cp-kafka:latest
     depends_on:
       - zookeeper
     environment:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://127.0.0.1:29092,PLAINTEXT_INTERNAL://127.0.0.1:29093
+      KAFKA_ADVERTISED_HOST_NAME: localhost
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_INTERNAL://vitech_kafka:29093
+#      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://127.0.0.1:29092,PLAINTEXT_INTERNAL://127.0.0.1:29093
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
-      KAFKA_CREATE_TOPICS: "ClickProductTopic:1:2,PurchaseTopic:1:2,Exception:1:2"
+      KAFKA_CREATE_TOPICS: "user-activity:1:2,exception:1:2"
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
