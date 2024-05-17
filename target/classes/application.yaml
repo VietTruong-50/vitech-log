@@ -26,10 +26,10 @@ spring:
 ---
 spring:
   application:
-    name: ${HOSTNAME:log-service}
+    name: ${HOSTNAME:statistic-service}
 eureka: #<1>
   instance:
-    app-name: ${HOSTNAME:log-service}
+    app-name: ${HOSTNAME:statistic-service}
     lease-renewal-interval-in-seconds: 5
     lease-expiration-duration-in-seconds: 5
     health-check-url-path: /actuator/health
